@@ -1,0 +1,33 @@
+<div class="signup-page">
+    <div class="form-container">
+        <div class="title">
+            <div class="logo"><img src="..//public/images/logo.svg"/></div>
+            <div>
+                <h2 class="welcome-msg">Create Your Account</h2>
+                <p class="title-text">Sign up to start organising your notes and boost your productivity</p>
+            </div>
+          
+        </div>
+         <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm">
+            <div class="credentials">
+                <div class="email-wrapper">
+                    <label for="email">Email Address</label>
+                    <input type="email" formControlName="email" type="email">
+                </div>
+                <div class="password-wrapper">
+                    <label for="password-wrapper">Password</label>
+                    <input type="password" formControlName="password" type="email">
+                </div>
+                <button class="btn btn-primary" type="submit">Sign up</button>
+            </div>
+            <div class="alternate-login">
+                <p>Or login in with:</p>
+                <div>
+                    <button class="btn btn-secondary"><img src="..//public/images/icon-google.svg">  Google</button>
+                </div>
+            </div>
+            <p class="sign-up">Already have an account? <a href="google.com">Login</a></p>
+            
+         </form>
+</div>
+</div>
