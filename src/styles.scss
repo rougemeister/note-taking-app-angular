@@ -3,6 +3,50 @@
 @use './styles/partials/reset' as *;
 @use './styles/partials/variables' as *;
 
+
+
+
 body {
     font-family: $sans-font;
+    color: $primary-text;
+  
+}
+
+
+p, label, a {
+      font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6, label {
+    color: $neutral-950;
+}
+
+button {
+    cursor: pointer;
+}
+.btn-primary, .btn-secondary, input {
+    height: 44px;
+    width: 100%;
+    border-radius: $radius-8;
+    font-family: inherit;
+    
+}
+
+
+input {
+    border: 1px solid $neutral-300 ;
+    padding: 16px;
+}
+
+
+.btn-primary{
+    background-color: $blue-700;
+    color: white;
+    width: 100%;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: $neutral-950;
+    border: 1px solid $neutral-300 ;
 }

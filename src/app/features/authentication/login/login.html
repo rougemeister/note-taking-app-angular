@@ -1,0 +1,37 @@
+<div class="login-page">
+    <div class="form-container">
+        <div class="title">
+            <div class="logo"><img src="..//public/images/logo.svg"/></div>
+            <div>
+                <h2 class="welcome-msg">Welcome to Note</h2>
+                <p class="title-text">Please log in to continue</p>
+            </div>
+          
+        </div>
+         <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+            <div class="credentials">
+                <div class="email-wrapper">
+                    <label for="email">Email Address</label>
+                    <input type="email" formControlName="email" type="email">
+                </div>
+                <div class="password-wrapper">
+                    <div class="label-wrapper">
+                        <label for="password-wrapper">Password</label>
+                        <a href="">Forgot</a>
+                    </div>
+                
+                    <input type="password" formControlName="password" type="email">
+                </div>
+                <button class="btn btn-primary" type="submit">Login</button>
+            </div>
+            <div class="alternate-login">
+                <p>Or login in with:</p>
+                <div>
+                    <button class="btn btn-secondary"><img src="..//public/images/icon-google.svg">  Google</button>
+                </div>
+            </div>
+            <p class="sign-up">No account yet? <a href="google.com">Sign Up</a></p>
+            
+         </form>
+</div>
+</div>
