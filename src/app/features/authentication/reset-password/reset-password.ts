@@ -17,7 +17,10 @@ resetPasswordForm!: FormGroup;
   })
   }
 
+
   onSubmit():void {
+    
+    console.log(this.resetPasswordForm.get('email')?.value)
     console.log(this.resetPasswordForm.get('email')?.value)
   }
 }
