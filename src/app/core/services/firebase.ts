@@ -21,7 +21,8 @@ import { Note, CreateNoteRequest, UpdateNoteRequest } from '../../core/models/mo
 @Injectable({
   providedIn: 'root'
 })
-export class NotesService {
+export class 
+NotesService {
   private firestore = inject(Firestore);
   private auth = inject(Auth);
   private user$ = user(this.auth);
