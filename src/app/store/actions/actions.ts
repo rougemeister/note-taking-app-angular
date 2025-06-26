@@ -2,7 +2,8 @@
 import { createAction, props } from '@ngrx/store';
 import { Note, CreateNoteRequest, UpdateNoteRequest } from  '../../core/models/model';
 
-export const loadNotes = createAction('[Note] Load Notes');
+export const loadNotes = createAction('[Note] Load Notes', props<{notes: Note[]}>);
+
 export const loadNotesSuccess = createAction(
   '[Note] Load Notes Success',
   props<{ notes: Note[] }>()

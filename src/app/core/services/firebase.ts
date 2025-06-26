@@ -1,8 +1,19 @@
 // src/app/core/services/notes.service.ts
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable, combineLatest, from } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { 
+  Firestore, 
+  collection, 
+  collectionData, 
+  addDoc, 
+  doc, 
+  updateDoc, 
+  deleteDoc,
+  query,
+  where,
+  getDoc
+} from '@angular/fire/firestore';
+import { Auth, user } from '@angular/fire/auth';
+import { Observable, from, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { v4 as uuidv4 } from 'uuid';
 import { Note, CreateNoteRequest, UpdateNoteRequest } from '../../core/models/model';
@@ -11,77 +22,76 @@ import { Note, CreateNoteRequest, UpdateNoteRequest } from '../../core/models/mo
   providedIn: 'root'
 })
 export class NotesService {
-  constructor(
-    private firestore: AngularFirestore,
-    private auth: AngularFireAuth
-  ) {}
+  private firestore = inject(Firestore);
+  private auth = inject(Auth);
+  private user$ = user(this.auth);
 
   getNotes(): Observable<Note[]> {
-    return this.auth.authState.pipe(
-      switchMap(user => {
-        if (!user) return [];
-        return this.firestore
-          .collection<Note>('notes', ref => ref.where('userId', '==', user.uid))
-          .valueChanges();
+    return this.user$.pipe(
+      switchMap(currentUser => {
+        if (!currentUser) return of([]);
+        
+        const notesRef = collection(this.firestore, 'notes');
+        const userNotesQuery = query(notesRef, where('userId', '==', currentUser.uid));
+        
+        return collectionData(userNotesQuery, { idField: 'id' }) as Observable<Note[]>;
       })
     );
   }
 
   createNote(noteData: CreateNoteRequest): Observable<Note> {
-    return this.auth.authState.pipe(
-      switchMap(user => {
-        if (!user) throw new Error('User not authenticated');
+    return this.user$.pipe(
+      switchMap(currentUser => {
+        if (!currentUser) throw new Error('User not authenticated');
         
-        const note: Note = {
-          id: uuidv4(),
+        const note: Omit<Note, 'id'> = {
           ...noteData,
           isArchived: false,
           createdAt: new Date(),
           updatedAt: new Date(),
-          userId: user.uid
+          userId: currentUser.uid
         };
 
-        return this.firestore
-          .collection('notes')
-          .doc(note.id)
-          .set(note)
-          .then(() => note);
+        const notesRef = collection(this.firestore, 'notes');
+        
+        return from(addDoc(notesRef, note)).pipe(
+          map(docRef => ({
+            id: docRef.id,
+            ...note
+          } as Note))
+        );
       })
     );
   }
 
   updateNote(noteData: UpdateNoteRequest): Observable<Note> {
-    return this.auth.authState.pipe(
-      switchMap(user => {
-        if (!user) throw new Error('User not authenticated');
+    return this.user$.pipe(
+      switchMap(currentUser => {
+        if (!currentUser) throw new Error('User not authenticated');
         
-        const updateData = {
-          ...noteData,
+        const { id, ...updateData } = noteData;
+        const updatedData = {
+          ...updateData,
           updatedAt: new Date()
         };
 
-        return this.firestore
-          .collection('notes')
-          .doc(noteData.id)
-          .update(updateData)
-          .then(() => {
-            return this.firestore
-              .collection('notes')
-              .doc(noteData.id)
-              .get()
-              .toPromise()
-              .then(doc => doc?.data() as Note);
-          });
+        const noteRef = doc(this.firestore, `notes/${id}`);
+        
+        return from(updateDoc(noteRef, updatedData)).pipe(
+          switchMap(() => from(getDoc(noteRef))),
+          map(docSnap => {
+            if (docSnap.exists()) {
+              return { id: docSnap.id, ...docSnap.data() } as Note;
+            }
+            throw new Error('Note not found after update');
+          })
+        );
       })
     );
   }
 
   deleteNote(id: string): Observable<void> {
-    return from(
-      this.firestore
-        .collection('notes')
-        .doc(id)
-        .delete()
-    );
+    const noteRef = doc(this.firestore, `notes/${id}`);
+    return from(deleteDoc(noteRef));
   }
 }

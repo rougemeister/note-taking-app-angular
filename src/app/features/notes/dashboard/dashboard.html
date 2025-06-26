@@ -6,6 +6,10 @@
         </div>
     </header>
     <main>
+
+        @for(item of filteredNotes$ | async ;  track item.id){
+            <p>{{item.id}}</p>
+        }
         <h2>All Notes</h2>
         <ul class="note">
             <li class="note-item">

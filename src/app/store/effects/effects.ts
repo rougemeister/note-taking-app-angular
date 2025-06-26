@@ -1,5 +1,5 @@
 // src/app/store/effects/note.effects.ts
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, catchError, switchMap, tap } from 'rxjs/operators';
@@ -8,6 +8,13 @@ import * as NoteActions from '../actions/actions';
 
 @Injectable()
 export class NoteEffects {
+private actions$ = inject(Actions);
+  private notesService = inject(NotesService);
+
+  constructor(
+    
+  ) {}
+
   loadNotes$ = createEffect(() =>
     this.actions$.pipe(
       ofType(NoteActions.loadNotes),
@@ -67,9 +74,4 @@ export class NoteEffects {
       )
     )
   );
-
-  constructor(
-    private actions$: Actions,
-    private notesService: NotesService
-  ) {}
 }
