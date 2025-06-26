@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-
-import { SignUp } from './features/authentication/sign-up/sign-up';
-import { ResetPassword } from "./features/authentication/reset-password/reset-password";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [ResetPassword],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

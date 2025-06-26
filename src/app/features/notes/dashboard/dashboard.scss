@@ -1,0 +1,45 @@
+@use '../../../../styles/partials/variables' as * ;
+@use '../../../../styles/partials/mixins' as * ;
+
+
+.dashboard {
+    height: 100vh;
+    background-color: $neutral-100;
+    @include flex (column, start, stretch, 0)
+}
+main{
+    padding: 20px 16px;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border-top-right-radius: $radius-8 ;
+    border-top-left-radius: $radius-8;
+}
+
+.tags-wrapper {
+    display: flex;
+    gap:5px;
+   
+    .tag {
+        color: $neutral-950;
+        padding: 0 5px;
+          background-color: $neutral-200;
+          border-radius: $radius-4;
+    }
+  
+}
+
+header {
+    padding: 13px 16px;
+}
+ul {
+    margin-top: 16px;
+}
+
+.note-item {
+    display: flex;
+    flex-direction: column;
+    gap:12px;
+    padding: 8px;
+    border-bottom: 1px solid $neutral-300;
+}
