@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
+  standalone:true,
   imports: [Nav, AsyncPipe, CommonModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss'

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrl: './login.scss'
@@ -21,8 +22,6 @@ export class Login {
   onSubmit():void {
     console.log(this.loginForm.get('email')?.value)
   }
-
- 
 
 
   
