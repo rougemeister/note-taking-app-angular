@@ -6,22 +6,17 @@
         </div>
     </header>
     <main>
-
-        @for(item of filteredNotes$ | async ;  track item.id){
-            <p>{{item.id}}</p>
-        }
         <h2>All Notes</h2>
-        <ul class="note">
-            <li class="note-item">
-                <h4>React Performance Optimisation</h4>
-                <div class="tags-wrapper">
-                    <p class="tag">Dev</p>
-                    <p class="tag">React</p>
-                </div>
-                <p class="date">29 Oct 2024</p>
-            </li>
-        </ul>
+        <div class="notes-container"> 
+            @for(item of filteredNotes$ | async ;  track item.id){
+           <app-note-item [noteItem]="item"></app-note-item>
+        }
+        </div>
+       
     </main>
-    <app-nav/>
+    <div class="nav-wrapper">
+         <app-nav/>
+    </div>
+ 
 </div>
 

@@ -1,19 +1,14 @@
-// src/app/store/effects/note.effects.ts
-import { inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, catchError, switchMap, tap } from 'rxjs/operators';
-import { NotesService } from '../../core/services/firebase';
+import { switchMap, map, catchError } from 'rxjs/operators';
+import { NotesService } from 'src/app/core/services/notes.service';
 import * as NoteActions from '../actions/actions';
 
 @Injectable()
 export class NoteEffects {
-private actions$ = inject(Actions);
+  private actions$ = inject(Actions);
   private notesService = inject(NotesService);
-
-  constructor(
-    
-  ) {}
 
   loadNotes$ = createEffect(() =>
     this.actions$.pipe(
@@ -42,10 +37,10 @@ private actions$ = inject(Actions);
   updateNote$ = createEffect(() =>
     this.actions$.pipe(
       ofType(NoteActions.updateNote),
-      switchMap(({ note }) =>
-        this.notesService.updateNote(note).pipe(
+      switchMap(({ id, changes }) =>
+        this.notesService.updateNote(id, changes).pipe(
           map(updatedNote => NoteActions.updateNoteSuccess({ note: updatedNote })),
-          catchError(error => of(NoteActions.loadNotesFailure({ error })))
+          catchError(error => of(NoteActions.updateNoteFailure({ error })))
         )
       )
     )
@@ -57,19 +52,7 @@ private actions$ = inject(Actions);
       switchMap(({ id }) =>
         this.notesService.deleteNote(id).pipe(
           map(() => NoteActions.deleteNoteSuccess({ id })),
-          catchError(error => of(NoteActions.loadNotesFailure({ error })))
-        )
-      )
-    )
-  );
-
-  archiveNote$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(NoteActions.archiveNote),
-      switchMap(({ id, isArchived }) =>
-        this.notesService.updateNote({ id, isArchived }).pipe(
-          map(updatedNote => NoteActions.updateNoteSuccess({ note: updatedNote })),
-          catchError(error => of(NoteActions.loadNotesFailure({ error })))
+          catchError(error => of(NoteActions.deleteNoteFailure({ error })))
         )
       )
     )

@@ -1,0 +1,11 @@
+ <ul class="note" (click)="goToDetails()">
+            <li class="note-item">
+                <h4>{{noteItem.title}}</h4>
+                <div class="tags-wrapper">
+                    @for(tag of noteItem.tags; track noteItem.title){
+                        <p class="tag">{{tag}}</p>
+                    }
+                </div>
+                <p class="date">{{noteItem.lastEdited | date}}</p>
+            </li>
+</ul>

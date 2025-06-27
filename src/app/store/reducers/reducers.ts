@@ -4,6 +4,8 @@ import * as NoteActions from "../actions/actions";
 
 export const noteReducer = createReducer(
   initialState,
+
+  // Load
   on(NoteActions.loadNotes, state => ({
     ...state,
     loading: true
@@ -19,18 +21,48 @@ export const noteReducer = createReducer(
     loading: false,
     error
   })),
+
+  // Create
   on(NoteActions.createNoteSuccess, (state, { note }) => ({
     ...state,
     notes: [...state.notes, note]
   })),
+  on(NoteActions.createNoteFailure, (state, { error }) => ({
+    ...state,
+    error
+  })),
+
+  // Update (by id)
   on(NoteActions.updateNoteSuccess, (state, { note }) => ({
     ...state,
-    notes: state.notes.map(n => n.id === note.id ? note : n)
+    notes: state.notes.map(n =>
+      n.id === note.id ? note : n
+    )
   })),
+  on(NoteActions.updateNoteFailure, (state, { error }) => ({
+    ...state,
+    error
+  })),
+
+  // Delete (by id)
   on(NoteActions.deleteNoteSuccess, (state, { id }) => ({
     ...state,
     notes: state.notes.filter(n => n.id !== id)
   })),
+  on(NoteActions.deleteNoteFailure, (state, { error }) => ({
+    ...state,
+    error
+  })),
+
+  // Archive / Unarchive (by id)
+  on(NoteActions.archiveNote, (state, { id, isArchived }) => ({
+    ...state,
+    notes: state.notes.map(n =>
+      n.id === id ? { ...n, isArchived } : n
+    )
+  })),
+
+  // UI Filters
   on(NoteActions.setSearchTerm, (state, { searchTerm }) => ({
     ...state,
     searchTerm

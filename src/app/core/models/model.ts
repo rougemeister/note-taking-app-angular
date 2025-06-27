@@ -1,14 +1,11 @@
 export interface Note {
-  id: string;
+  id: string; // <-- Added this
   title: string;
-  content: string;
   tags: string[];
+  content: string;
+  lastEdited: string; // ISO string format
   isArchived: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-  userId: string;
 }
-
 export interface CreateNoteRequest {
   title: string;
   content: string;
@@ -16,7 +13,6 @@ export interface CreateNoteRequest {
 }
 
 export interface UpdateNoteRequest {
-  id: string;
   title?: string;
   content?: string;
   tags?: string[];

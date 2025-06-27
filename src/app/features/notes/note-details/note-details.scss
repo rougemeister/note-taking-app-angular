@@ -1,0 +1,61 @@
+@use '../../../../styles/partials/variables' as *;
+@use '../../../../styles/partials/mixins' as *;
+
+.dashboard {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $neutral-100;
+
+  header {
+    padding: 13px 16px;
+    z-index: 2;
+  }
+
+  main {
+    flex: 1;
+    overflow-y: auto; // scrollable main
+    padding: 20px 16px;
+    background-color: white;
+    border-top-left-radius: $radius-8;
+    border-top-right-radius: $radius-8;
+  }
+
+
+  .nav-wrapper {
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    z-index: 3;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+
+.options {
+    width: 100%;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $neutral-300;
+    img {
+        height: 18px;
+        width: 18px;
+    }
+    .back {
+        display: flex;
+        align-items: center;
+    }
+    .right {
+        display: flex;
+        align-items: center;
+        gap:16px;
+
+    }
+
+    .save {
+        color: $blue-700;
+    }
+
+}

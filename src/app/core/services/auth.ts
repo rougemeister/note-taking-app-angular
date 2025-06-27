@@ -1,6 +1,5 @@
-// src/app/core/services/auth.service.ts
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Injectable, inject } from '@angular/core';
+import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut, onAuthStateChanged, User as FirebaseUser } from '@angular/fire/auth';
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/model';
@@ -9,43 +8,44 @@ import { User } from '../models/model';
   providedIn: 'root'
 })
 export class AuthService {
-  user$: Observable<User | null>;
+  private auth = inject(Auth);
 
-  constructor(private auth: AngularFireAuth) {
-    this.user$ = this.auth.authState.pipe(
-      map(user => user ? {
-        uid: user.uid,
-        email: user.email!,
-        displayName: user.displayName || undefined
-      } : null)
-    );
-  }
+  // Observable of simplified User interface
+  user$: Observable<User | null> = new Observable(subscriber => {
+    onAuthStateChanged(this.auth, user => {
+      if (user) {
+        subscriber.next(this.mapFirebaseUser(user));
+      } else {
+        subscriber.next(null);
+      }
+    });
+  });
 
   login(email: string, password: string): Observable<User> {
-    return from(this.auth.signInWithEmailAndPassword(email, password)).pipe(
-      map(credential => ({
-        uid: credential.user!.uid,
-        email: credential.user!.email!,
-        displayName: credential.user!.displayName || undefined
-      }))
+    return from(signInWithEmailAndPassword(this.auth, email, password)).pipe(
+      map(cred => this.mapFirebaseUser(cred.user))
     );
   }
 
   register(email: string, password: string): Observable<User> {
-    return from(this.auth.createUserWithEmailAndPassword(email, password)).pipe(
-      map(credential => ({
-        uid: credential.user!.uid,
-        email: credential.user!.email!,
-        displayName: credential.user!.displayName || undefined
-      }))
+    return from(createUserWithEmailAndPassword(this.auth, email, password)).pipe(
+      map(cred => this.mapFirebaseUser(cred.user))
     );
   }
 
   logout(): Observable<void> {
-    return from(this.auth.signOut());
+    return from(signOut(this.auth));
   }
 
   resetPassword(email: string): Observable<void> {
-    return from(this.auth.sendPasswordResetEmail(email));
+    return from(sendPasswordResetEmail(this.auth, email));
+  }
+
+  private mapFirebaseUser(user: FirebaseUser): User {
+    return {
+      uid: user.uid,
+      email: user.email!,
+      displayName: user.displayName || undefined
+    };
   }
 }

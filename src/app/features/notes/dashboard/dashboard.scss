@@ -1,45 +1,37 @@
-@use '../../../../styles/partials/variables' as * ;
-@use '../../../../styles/partials/mixins' as * ;
-
+@use '../../../../styles/partials/variables' as *;
+@use '../../../../styles/partials/mixins' as *;
 
 .dashboard {
-    height: 100vh;
-    background-color: $neutral-100;
-    @include flex (column, start, stretch, 0)
-}
-main{
-    padding: 20px 16px;
-    height: 100%;
-    width: 100%;
-    background-color: white;
-    border-top-right-radius: $radius-8 ;
-    border-top-left-radius: $radius-8;
-}
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $neutral-100;
 
-.tags-wrapper {
-    display: flex;
-    gap:5px;
-   
-    .tag {
-        color: $neutral-950;
-        padding: 0 5px;
-          background-color: $neutral-200;
-          border-radius: $radius-4;
-    }
-  
-}
-
-header {
+  header {
     padding: 13px 16px;
-}
-ul {
-    margin-top: 16px;
-}
+    z-index: 2;
+  }
 
-.note-item {
+  main {
+    flex: 1;
+    overflow-y: auto; // scrollable main
+    padding: 20px 16px;
+    background-color: white;
+    border-top-left-radius: $radius-8;
+    border-top-right-radius: $radius-8;
+  }
+
+  .notes-container {
     display: flex;
     flex-direction: column;
-    gap:12px;
-    padding: 8px;
-    border-bottom: 1px solid $neutral-300;
+    gap: 1rem;
+  }
+
+  .nav-wrapper {
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    z-index: 3;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  }
 }

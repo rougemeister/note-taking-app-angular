@@ -1,1 +1,28 @@
-<p>note-details works!</p>
+
+<div class="dashboard">
+    <header>
+        <div class="logo">
+            <img src="../../../../assets/images/logo.svg" alt="">
+        </div>
+    </header>
+    <main>
+        <div class="options">
+            <button class="back"><img src="../../../../assets/images/icon-arrow-left.svg" alt=""> GoBack</button>
+            <div class="right">
+                <button class="delete"><img src="../../../../assets/images/icon-delete.svg" alt="delete logo"></button>
+                <button class="archive"><img src="../../../../assets/images/icon-archive.svg" alt="archive logo"></button>
+                <button class="cancel">Cancel</button>
+                <button class="save">Save Note</button>
+            </div>
+        </div>
+       <div class="note-details" *ngIf="note$ | async as note">
+            <p>{{ note.title }}</p>
+            <p>{{ note.content }}</p>
+        </div>
+    </main>
+    <div class="nav-wrapper">
+         <app-nav/>
+    </div>
+ 
+</div>
+

@@ -1,22 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Nav } from '../../shared/nav/nav';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { Note } from '../../../core/models/model';
 import * as NoteSelectors from '../../../store/selectors/selectors';
 import * as NoteActions from '../../../store/actions/actions';
 import { Store } from '@ngrx/store';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe} from '@angular/common';
 import { CommonModule } from '@angular/common';
-
+import { NoteItemComponent } from '../note-item/note-item.component';
+import { NotesService } from 'src/app/core/services/notes.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone:true,
-  imports: [Nav, AsyncPipe, CommonModule],
+  imports: [Nav, AsyncPipe, CommonModule, NoteItemComponent],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss'
 })
 export class Dashboard implements OnInit{
+  private destroy$ = new Subject<void>();
+  noteService = inject(NotesService)
 
   filteredNotes$!: Observable<Note[]>;
   allTags$!: Observable<string[]>;
@@ -28,11 +31,11 @@ export class Dashboard implements OnInit{
     this.allTags$ = this.store.select(NoteSelectors.selectAllTags);
     this.searchTerm$ = this.store.select(NoteSelectors.selectSearchTerm);
     this.selectedTags$ = this.store.select(NoteSelectors.selectSelectedTags);
+    
   }
 
   ngOnInit(): void {
         this.store.dispatch(NoteActions.loadNotes());
-  
   }
   
 }
