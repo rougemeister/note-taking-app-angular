@@ -15,7 +15,6 @@ import {
 import { Auth, user } from '@angular/fire/auth';
 import { Observable, from, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { v4 as uuidv4 } from 'uuid';
 import { Note, CreateNoteRequest, UpdateNoteRequest } from '../../core/models/model';
 
 @Injectable({
