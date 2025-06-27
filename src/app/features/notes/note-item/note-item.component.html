@@ -2,7 +2,7 @@
             <li class="note-item">
                 <h4>{{noteItem.title}}</h4>
                 <div class="tags-wrapper">
-                    @for(tag of noteItem.tags; track noteItem.title){
+                    @for(tag of noteItem.tags; track tag){
                         <p class="tag">{{tag}}</p>
                     }
                 </div>

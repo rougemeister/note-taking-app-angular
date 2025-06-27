@@ -57,4 +57,22 @@ export class NoteEffects {
       )
     )
   );
+
+  archiveNote$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(NoteActions.archiveNote),
+    switchMap(({ id, isArchived }) =>
+      this.notesService.archiveNote(id, isArchived).pipe(
+        map(() => NoteActions.updateNoteSuccess({
+          note: { ...this.notesService.getNoteCacheById(id)!, isArchived }
+        })),
+        catchError(error => of(NoteActions.updateNoteFailure({ error })))
+      )
+    )
+  )
+);
+
 }
+
+
+// note.effects.ts

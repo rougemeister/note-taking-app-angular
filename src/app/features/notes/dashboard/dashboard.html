@@ -8,7 +8,7 @@
     <main>
         <h2>All Notes</h2>
         <div class="notes-container"> 
-            @for(item of filteredNotes$ | async ;  track item.id){
+            @for(item of filteredNotes$ | async ;  track item){
            <app-note-item [noteItem]="item"></app-note-item>
         }
         </div>

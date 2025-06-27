@@ -9,6 +9,9 @@ import { Note, CreateNoteRequest, UpdateNoteRequest } from '../../core/models/mo
   providedIn: 'root'
 })
 export class NotesService {
+  getNoteCacheById(id: string): Note {
+    throw new Error('Method not implemented.');
+  }
   private dataUrl = 'assets/data/data.json';
   private notesCache: Note[] = [];
   private dataLoaded = false;
@@ -82,12 +85,26 @@ export class NotesService {
     this.notesCache[index] = updatedNote;
     return of(updatedNote);
   }
+  archiveNote(id: string, isArchived: boolean): Observable<void> {
+  const index = this.notesCache.findIndex(n => n.id === id);
 
-  deleteNote(id: string): Observable<void> {
-    const index = this.notesCache.findIndex(n => n.id === id);
-    if (index !== -1) {
-      this.notesCache.splice(index, 1);
-    }
-    return of(void 0);
+  if (index !== -1) {
+    const copy = [...this.notesCache]; // clone the array
+    copy[index] = {
+      ...copy[index],
+      isArchived
+    };
+    this.notesCache = copy; 
   }
+
+  return of(void 0);
+}
+
+
+
+ deleteNote(id: string): Observable<void> {
+  this.notesCache = this.notesCache.filter(note => note.id !== id);
+  return of(void 0);
+}
+
 }

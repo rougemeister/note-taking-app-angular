@@ -7,17 +7,44 @@
     </header>
     <main>
         <div class="options">
-            <button class="back"><img src="../../../../assets/images/icon-arrow-left.svg" alt=""> GoBack</button>
+            <button class="back" (click)="goBack()"><img src="../../../../assets/images/icon-arrow-left.svg" alt=""> Go Back</button>
             <div class="right">
-                <button class="delete"><img src="../../../../assets/images/icon-delete.svg" alt="delete logo"></button>
-                <button class="archive"><img src="../../../../assets/images/icon-archive.svg" alt="archive logo"></button>
+                <button class="delete" (click)="deleteNote()"><img src="../../../../assets/images/icon-delete.svg" alt="delete logo"></button>
+                <ng-container *ngIf="note$ | async as note">
+                    <button  class="archive" (click)="archiveNote(note)"><img src="../../../../assets/images/icon-archive.svg" alt="archive logo"></button>
+                </ng-container>
                 <button class="cancel">Cancel</button>
                 <button class="save">Save Note</button>
             </div>
         </div>
        <div class="note-details" *ngIf="note$ | async as note">
-            <p>{{ note.title }}</p>
-            <p>{{ note.content }}</p>
+        <div class="note-details-wrapper">
+            <h3 class="detail-title">{{ note.title }}</h3>
+            <div class="details-stats">
+                    <div class="tags-wrapper">
+                        <div class="icon">
+                            <img src="../../../../assets/images/icon-tag.svg">
+                            <p class="tags">Tags</p>
+                        </div>
+                        <div class="tags">
+                            @for(tag of note.tags; track tag; let last = $last) {
+                                <p>{{tag}}{{ !$last ? ',' : '' }}</p>
+                            }
+                        </div>
+                    </div>
+                    <div class="updates tags-wrapper">
+                         <div class="icon">
+                            <img src="../../../../assets/images/icon-clock.svg">
+                            <p class="tags">Last edited</p>
+                        </div>
+                        <p class="date">
+                            {{note.lastEdited | date}}
+                        </p>
+                    </div>
+            </div>
+        </div>
+         
+            <pre><p>{{ note.content }}</p></pre>
         </div>
     </main>
     <div class="nav-wrapper">
