@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav',
   standalone:true,
@@ -8,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrl: './nav.scss'
 })
 export class Nav {
+  constructor(private router: Router){}
+
+
+
+  goHome():void {
+    this.router.navigate(['/'])
+  }
+
+  goToArchived(): void {
+    this.router.navigate(['archived'])
+  }
 
 }

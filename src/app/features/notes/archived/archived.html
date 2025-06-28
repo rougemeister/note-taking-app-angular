@@ -1,1 +1,22 @@
-<p>archived works!</p>
+
+<div class="dashboard">
+    <header>
+        <div class="logo">
+            <img src="../../../../assets/images/logo.svg" alt="">
+        </div>
+    </header>
+    <main>
+        <h2>All Notes</h2>
+        <div class="notes-container"> 
+            @for(item of archivedNotes$ | async ;  track item){
+           <app-note-item [noteItem]="item"></app-note-item>
+        }
+        </div>
+       
+    </main>
+    <div class="nav-wrapper">
+         <app-nav/>
+    </div>
+ 
+</div>
+

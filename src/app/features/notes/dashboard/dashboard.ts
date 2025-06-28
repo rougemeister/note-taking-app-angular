@@ -18,9 +18,6 @@ import { NotesService } from 'src/app/core/services/notes.service';
   styleUrl: './dashboard.scss'
 })
 export class Dashboard implements OnInit{
-  private destroy$ = new Subject<void>();
-  noteService = inject(NotesService)
-
   filteredNotes$!: Observable<Note[]>;
   allTags$!: Observable<string[]>;
   searchTerm$!: Observable<string>;

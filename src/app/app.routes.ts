@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { CreateNote } from './features/notes/create-note/create-note';
 import { Dashboard } from './features/notes/dashboard/dashboard';
 import { NoteDetails } from './features/notes/note-details/note-details';
+import { Archived } from './features/notes/archived/archived';
 
 export const routes: Routes = [
     {   
@@ -15,5 +16,9 @@ export const routes: Routes = [
     {
         path: 'note/:id',
         component: NoteDetails
+    },
+    {
+        path: 'archived',
+        component: Archived
     }
 ];
