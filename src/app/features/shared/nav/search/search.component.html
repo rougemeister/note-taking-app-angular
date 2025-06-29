@@ -1,0 +1,10 @@
+<div class="search-input-wrapper">
+    <label for="search"><img src="../../../../assets/images/icon-search.svg" alt=""></label>
+    <input 
+        type="text" 
+        id="search" 
+        placeholder="Search by title, content, or tags…"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchChange()"
+        >
+</div>

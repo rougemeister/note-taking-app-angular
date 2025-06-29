@@ -8,7 +8,6 @@ import { Store } from '@ngrx/store';
 import { AsyncPipe} from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { NoteItemComponent } from '../note-item/note-item.component';
-import { NotesService } from 'src/app/core/services/notes.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,9 +24,7 @@ export class Dashboard implements OnInit{
 
   constructor(private store: Store) {
     this.filteredNotes$ = this.store.select(NoteSelectors.selectFilteredNotes);
-    this.allTags$ = this.store.select(NoteSelectors.selectAllTags);
-    this.searchTerm$ = this.store.select(NoteSelectors.selectSearchTerm);
-    this.selectedTags$ = this.store.select(NoteSelectors.selectSelectedTags);
+  
     
   }
 

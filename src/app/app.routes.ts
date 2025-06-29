@@ -5,6 +5,8 @@ import { NoteDetails } from './features/notes/note-details/note-details';
 import { Archived } from './features/notes/archived/archived';
 import { TagsComponent } from './features/notes/tags/tags.component';
 import { SelectedTagsDetailsComponent } from './features/notes/selected-tags-details/selected-tags-details.component';
+import { SearchComponent } from './features/shared/nav/search/search.component';
+import { SearchDetailPageComponent } from './features/notes/search-detail-page/search-detail-page.component';
 
 export const routes: Routes = [
     {   
@@ -30,6 +32,10 @@ export const routes: Routes = [
     {
         path: 'tags/:tag',
         component: SelectedTagsDetailsComponent
+    },
+    {
+        path:'search',
+        component: SearchDetailPageComponent
     }
     
 ];

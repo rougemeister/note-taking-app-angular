@@ -1,0 +1,23 @@
+<div class="dashboard">
+  <header>
+    <div class="logo">
+      <img src="../../../../assets/images/logo.svg" alt="Logo">
+    </div>
+  </header>
+
+  <main>
+    <h2>Search</h2>
+    <app-search/>
+
+
+    <div class="notes-container">
+      @for(item of filteredNotes$ | async ;  track item){
+           <app-note-item [noteItem]="item"></app-note-item>
+      }
+    </div>
+  </main>
+
+  <div class="nav-wrapper">
+    <app-nav />
+  </div>
+</div>
