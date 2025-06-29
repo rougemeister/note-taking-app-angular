@@ -1,0 +1,25 @@
+<div class="dashboard">
+  <header>
+    <div class="logo">
+      <img src="../../../../assets/images/logo.svg" alt="Logo">
+    </div>
+  </header>
+
+  <main>
+    <button (click)="goBack()">Go back</button>
+
+    <h2>Notes Tagged: {{ tagName$ | async }}</h2>
+    <p>All notes with the ”{{tagName$ | async}}” tag are shown here.</p>
+
+
+    <div class="notes-container">
+      @for (note of notes$ | async; track note.id) {
+        <app-note-item [noteItem]="note" />
+      }
+    </div>
+  </main>
+
+  <div class="nav-wrapper">
+    <app-nav />
+  </div>
+</div>

@@ -3,6 +3,8 @@ import { CreateNote } from './features/notes/create-note/create-note';
 import { Dashboard } from './features/notes/dashboard/dashboard';
 import { NoteDetails } from './features/notes/note-details/note-details';
 import { Archived } from './features/notes/archived/archived';
+import { TagsComponent } from './features/notes/tags/tags.component';
+import { SelectedTagsDetailsComponent } from './features/notes/selected-tags-details/selected-tags-details.component';
 
 export const routes: Routes = [
     {   
@@ -20,5 +22,14 @@ export const routes: Routes = [
     {
         path: 'archived',
         component: Archived
+    }, 
+    {
+        path: 'tags',
+        component: TagsComponent
+    },
+    {
+        path: 'tags/:tag',
+        component: SelectedTagsDetailsComponent
     }
+    
 ];

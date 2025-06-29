@@ -1,0 +1,11 @@
+@use '../../../../styles/partials/variables' as *;
+@use '../../../../styles/partials/mixins' as *;
+
+
+.tags-container {
+    display: flex;
+    gap: 8px;
+    padding: 12px 0;
+    border-bottom: 1px solid $neutral-300;
+}
+

@@ -39,8 +39,7 @@ router = inject(Router)
     id: note.id,
     isArchived: !note.isArchived
   }));
-  // this.goBack()
-  console.log('done')
+  
 }
 
 

@@ -20,4 +20,8 @@ export class Nav {
     this.router.navigate(['archived'])
   }
 
+  goToTags(): void {
+    this.router.navigate(['tags'])
+  }
+
 }

@@ -73,3 +73,9 @@ export const selectNotesError = createSelector(
   selectNoteState,
   state => state.error
 );
+
+
+export const selectNotesByTagName = (tagName: string) => createSelector(
+  selectAllNotes,
+  notes => notes.filter(note => note.tags.includes(tagName))
+);

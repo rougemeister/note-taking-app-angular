@@ -1,0 +1,22 @@
+
+<div class="dashboard">
+    <header>
+        <div class="logo">
+            <img src="../../../../assets/images/logo.svg" alt="">
+        </div>
+    </header>
+    <main>
+        <h2>Tags</h2>
+        <div class="notes-container"> 
+            @for(item of allTags$ | async ;  track item; let last = $last){
+           <app-tag-item [tagName]="item" [lastElement]="last"></app-tag-item>
+        }
+        </div>
+       
+    </main>
+    <div class="nav-wrapper">
+         <app-nav/>
+    </div>
+ 
+</div>
+
