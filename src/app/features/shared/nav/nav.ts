@@ -28,4 +28,9 @@ export class Nav {
     this.router.navigate(['tags'])
   }
 
+  
+  goToSettings(): void {
+    this.router.navigate(['settings'])
+  }
+
 }

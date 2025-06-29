@@ -1,0 +1,77 @@
+<div class="dashboard">
+  <header>
+    <div class="logo">
+      <img src="../../../../assets/images/logo.svg" alt="">
+    </div>
+  </header>
+
+  <main>
+    <button>
+      <img src="../../../../assets/images/icon-arrow-left.svg" alt="">
+      <span>Settings</span>
+    </button>
+
+    <h2>Color Theme</h2>
+    <p>Choose your color theme:</p>
+
+    <div class="notes-container">
+      <ul>
+        <li>
+          <div class="image-wrapper">
+            <img src="../../../../assets/images/icon-sun.svg" alt="">
+          </div>
+          <div class="text">
+            <p>Light Mode</p>
+            <p>Pick a clean and classic light theme</p>
+          </div>
+          <input
+            type="radio"
+            name="theme"
+            value="light"
+            [(ngModel)]="selectedTheme"
+          />
+        </li>
+
+        <li>
+          <div class="image-wrapper">
+            <img src="../../../../assets/images/icon-moon.svg" alt="">
+          </div>
+          <div class="text">
+            <p>Dark Mode</p>
+            <p>Select a sleek and modern dark theme</p>
+          </div>
+          <input
+            type="radio"
+            name="theme"
+            value="dark"
+            [(ngModel)]="selectedTheme"
+          />
+        </li>
+
+        <li>
+          <div class="image-wrapper">
+            <img src="../../../../assets/images/icon-system-theme.svg" alt="">
+          </div>
+          <div class="text">
+            <p>System</p>
+            <p>Adapts to your device's theme</p>
+          </div>
+          <input
+            type="radio"
+            name="theme"
+            value="system"
+            [(ngModel)]="selectedTheme"
+          />
+        </li>
+      </ul>
+    </div>
+
+    <button (click)="updateTheme()" class="btn btn-primary">
+      Apply Changes
+    </button>
+  </main>
+
+  <div class="nav-wrapper">
+    <app-nav />
+  </div>
+</div>

@@ -11,6 +11,8 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 
+import { themeReducer } from './store/reducers/theme.reducers';
+import { ThemeEffects } from './store/effects/theme.effects';
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
 import { noteReducer } from './store/reducers/reducers';
@@ -24,9 +26,10 @@ export const appConfig: ApplicationConfig = {
     
     // NgRx Store with notes feature
     provideStore({
-      notes: noteReducer  // Register the notes feature here
+      notes: noteReducer,  // Register the notes feature here
+      theme: themeReducer
     }),
-    provideEffects([NoteEffects]),
+    provideEffects([NoteEffects, ThemeEffects]),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: environment.production
@@ -38,3 +41,5 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth())
   ]
 };
+
+

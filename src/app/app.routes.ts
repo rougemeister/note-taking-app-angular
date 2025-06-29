@@ -7,6 +7,8 @@ import { TagsComponent } from './features/notes/tags/tags.component';
 import { SelectedTagsDetailsComponent } from './features/notes/selected-tags-details/selected-tags-details.component';
 import { SearchComponent } from './features/shared/nav/search/search.component';
 import { SearchDetailPageComponent } from './features/notes/search-detail-page/search-detail-page.component';
+import { SettingsComponent } from './features/notes/settings/settings.component';
+import { ColorThemeComponent } from './features/notes/color-theme/color-theme.component';
 
 export const routes: Routes = [
     {   
@@ -36,6 +38,14 @@ export const routes: Routes = [
     {
         path:'search',
         component: SearchDetailPageComponent
+    },
+    {
+        path: 'settings',
+        component: SettingsComponent
+    },
+    {
+        path: 'color-theme',
+        component: ColorThemeComponent
     }
     
 ];

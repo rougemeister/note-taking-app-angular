@@ -1,5 +1,5 @@
 import { Note } from "../../core/models/model";
-
+import { ThemeMode } from "../../core/models/model";
 export interface NoteState {
   notes: Note[];
   loading: boolean;
@@ -15,4 +15,17 @@ export const initialState: NoteState = {
   error: null,
   searchTerm: '',
   selectedTags: []
+};
+
+
+
+
+//Theme
+
+export interface ThemeState {
+  currentTheme: ThemeMode;
+}
+
+export const initialThemeState: ThemeState = {
+  currentTheme: 'system',
 };

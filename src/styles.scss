@@ -6,6 +6,60 @@
 
 
 
+.theme-dark {
+  background-color: $neutral-950;
+  color: $neutral-100;
+
+  h1, h2, h3, h4, h5, h6, label {
+    color: $neutral-100;
+  }
+
+  p, label, a {
+    color: $neutral-300;
+  }
+
+  input {
+    background-color: $neutral-900;
+    color: $neutral-100;
+    border: 1px solid $neutral-600;
+  }
+
+  .btn-primary {
+    background-color: $blue-500;
+    color: white;
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: $neutral-100;
+    border: 1px solid $neutral-600;
+  }
+
+  .dashboard,
+  main,
+  header {
+    background-color: $neutral-900;
+  }
+
+  .notes-container {
+    background-color: $neutral-800;
+  }
+
+  .nav-wrapper {
+    background-color: $neutral-900;
+  }
+
+  // Optional: darken scrollbars
+  ::-webkit-scrollbar {
+    background: $neutral-950;
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $neutral-700;
+    border-radius: $radius-full;
+  }
+}
 
 body {
     font-family: $sans-font;
@@ -22,15 +76,20 @@ h1, h2, h3, h4, h5, h6, label {
     color: $neutral-950;
 }
 
+h2 {
+    margin-bottom:16px;
+}
+
 button {
     cursor: pointer;
 }
+
+
 .btn-primary, .btn-secondary, input {
     height: 44px;
     width: 100%;
     border-radius: $radius-8;
     font-family: inherit;
-    
 }
 
 

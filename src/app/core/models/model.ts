@@ -24,3 +24,5 @@ export interface User {
   email: string;
   displayName?: string;
 }
+
+export type ThemeMode = 'light' | 'dark' | 'system';
