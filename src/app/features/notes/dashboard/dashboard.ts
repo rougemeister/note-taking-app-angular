@@ -9,11 +9,12 @@ import { AsyncPipe} from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { NoteItemComponent } from '../note-item/note-item.component';
 import { HeaderComponent } from "../../shared/header/header.component";
+import { CreatButtonComponent } from "../../../shared/creat-button/creat-button.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone:true,
-  imports: [Nav, AsyncPipe, CommonModule, NoteItemComponent, HeaderComponent],
+  imports: [Nav, AsyncPipe, CommonModule, NoteItemComponent, HeaderComponent, CreatButtonComponent],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss'
 })

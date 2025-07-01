@@ -9,11 +9,12 @@ import { NoteItemComponent } from "../note-item/note-item.component";
 import { AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { HeaderComponent } from "../../shared/header/header.component";
+import { CreatButtonComponent } from "../../../shared/creat-button/creat-button.component";
 
 @Component({
   selector: 'app-selected-tags',
   standalone: true,
-  imports: [NoteItemComponent, Nav, AsyncPipe, HeaderComponent],
+  imports: [NoteItemComponent, Nav, AsyncPipe, HeaderComponent, CreatButtonComponent],
   templateUrl: './selected-tags.component.html',
   styleUrl: './selected-tags.component.scss'
 })

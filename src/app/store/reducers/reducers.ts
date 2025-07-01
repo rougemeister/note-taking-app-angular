@@ -39,6 +39,7 @@ export const noteReducer = createReducer(
       n.id === note.id ? note : n
     )
   })),
+
   on(NoteActions.updateNoteFailure, (state, { error }) => ({
     ...state,
     error
@@ -62,7 +63,7 @@ export const noteReducer = createReducer(
     )
   })),
 
-  // UI Filters
+
   on(NoteActions.setSearchTerm, (state, { searchTerm }) => ({
     ...state,
     searchTerm

@@ -1,1 +1,45 @@
-<p>create-note works!</p>
+
+<div class="dashboard">
+    <app-header/>
+    <main>
+        <div class="options">
+            <button class="back" (click)="goBack()"><img src="../../../../assets/images/icon-arrow-left.svg" alt=""> Go Back</button>
+            <div class="right">
+               
+                <button class="cancel">Cancel</button>
+                <button class="save">Save Note</button>
+            </div>
+        </div>
+       <div class="note-details">
+        <div class="note-details-wrapper">
+            <h3 class="detail-title"><input placeholder="Enter a title"/></h3>
+            <div class="details-stats">
+                    <div class="tags-wrapper">
+                        <div class="icon">
+                            <img src="../../../../assets/images/icon-tag.svg">
+                            <p class="tags">Tags</p>
+                        </div>
+                        <div class="tags">
+                           <input class="input"  placeholder="Add tags separated by commas \n (e.g. Work, Planning)"/>
+                        </div>
+                    </div>
+                    <div class="updates tags-wrapper">
+                         <div class="icon">
+                            <img src="../../../../assets/images/icon-clock.svg">
+                            <p class="tags">Last edited</p>
+                        </div>
+                        <p class="date">
+                          <input type="text" placeholder="Not yet save" value="" (focus)="showDatePicker()">
+                        </p>
+                    </div>
+            </div>
+        </div>
+            <textarea name="" id="" placeholder="Start typing your note"></textarea>
+        </div>
+    </main>
+    <div class="nav-wrapper">
+         <app-nav/>
+    </div>
+ 
+</div>
+

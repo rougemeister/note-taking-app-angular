@@ -8,11 +8,12 @@ import { Nav } from "../../shared/nav/nav";
 import { NoteItemComponent } from "../note-item/note-item.component";
 import { AsyncPipe } from '@angular/common';
 import { HeaderComponent } from "../../shared/header/header.component";
+import { CreatButtonComponent } from "../../../shared/creat-button/creat-button.component";
 
 @Component({
   selector: 'app-archived',
   standalone:true,
-  imports: [Nav, NoteItemComponent, AsyncPipe, HeaderComponent],
+  imports: [Nav, NoteItemComponent, AsyncPipe, HeaderComponent, CreatButtonComponent],
   templateUrl: './archived.html',
   styleUrl: './archived.scss'
 })
