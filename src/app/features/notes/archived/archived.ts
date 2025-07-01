@@ -7,11 +7,12 @@ import * as NoteActions from '../../../store/actions/actions';
 import { Nav } from "../../shared/nav/nav";
 import { NoteItemComponent } from "../note-item/note-item.component";
 import { AsyncPipe } from '@angular/common';
+import { HeaderComponent } from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-archived',
   standalone:true,
-  imports: [Nav, NoteItemComponent, AsyncPipe],
+  imports: [Nav, NoteItemComponent, AsyncPipe, HeaderComponent],
   templateUrl: './archived.html',
   styleUrl: './archived.scss'
 })

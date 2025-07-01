@@ -6,7 +6,7 @@
 
 
 
-.theme-dark {
+body.theme-dark {
   background-color: $neutral-950;
   color: $neutral-100;
 
@@ -38,15 +38,37 @@
   .dashboard,
   main,
   header {
-    background-color: $neutral-900;
-  }
-
-  .notes-container {
     background-color: $neutral-800;
   }
 
+  .dashboard.dashboard {
+    main, nav {
+        background-color: $neutral-950;
+    }
+
+    nav {
+        border: none;
+        box-shadow: 0 -4px 16px -2px rgba(15, 15, 15, 0.2);
+
+    }
+
+    .tag {
+        background-color: $neutral-700;
+        color: inherit;
+    }
+
+    svg {
+        color: $neutral-300;
+    }
+
+
+ 
+  }
+
+  
+
   .nav-wrapper {
-    background-color: $neutral-900;
+    background-color: $neutral-950;
   }
 
   // Optional: darken scrollbars

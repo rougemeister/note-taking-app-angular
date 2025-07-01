@@ -8,11 +8,12 @@ import { Nav } from "../../shared/nav/nav";
 import { NoteItemComponent } from "../note-item/note-item.component";
 import { AsyncPipe } from '@angular/common';
 import { TagItemComponent } from "../tag-item/tag-item.component";
+import { HeaderComponent } from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-tags',
   standalone: true,
-  imports: [Nav, AsyncPipe, TagItemComponent],
+  imports: [Nav, AsyncPipe, TagItemComponent, HeaderComponent],
   templateUrl: './tags.component.html',
   styleUrl: './tags.component.scss'
 })

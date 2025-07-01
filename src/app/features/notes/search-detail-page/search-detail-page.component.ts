@@ -8,12 +8,13 @@ import * as NoteSelectors from '../../../store/selectors/selectors';
 import * as NoteActions from '../../../store/actions/actions';
 import { NoteItemComponent } from '../note-item/note-item.component';
 import { AsyncPipe } from '@angular/common';
+import { HeaderComponent } from "../../shared/header/header.component";
 
 
 @Component({
   selector: 'app-search-detail-page',
   standalone: true,
-  imports: [Nav, SearchComponent, NoteItemComponent, AsyncPipe],
+  imports: [Nav, SearchComponent, NoteItemComponent, AsyncPipe, HeaderComponent],
   templateUrl: './search-detail-page.component.html',
   styleUrl: './search-detail-page.component.scss'
 })

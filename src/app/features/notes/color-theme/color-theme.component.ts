@@ -7,13 +7,15 @@ import { AppState } from 'src/app/store/state/app.state';
 import { ThemeMode } from 'src/app/core/models/model';
 import { FormsModule } from '@angular/forms';
 import {  AsyncPipe, CommonModule} from '@angular/common';
+import { HeaderComponent } from "../../shared/header/header.component";
+import { Router } from '@angular/router';
 
 
 
 @Component({
   selector: 'app-color-theme',
   standalone: true,
-  imports: [Nav, FormsModule, CommonModule],
+  imports: [Nav, FormsModule, CommonModule, HeaderComponent],
   templateUrl: './color-theme.component.html',
   styleUrl: './color-theme.component.scss'
 })
@@ -21,6 +23,7 @@ export class ColorThemeComponent implements OnInit {
   private store = inject(Store<AppState>);
   themes: ThemeMode[] = ['light', 'dark', 'system'];
   selectedTheme: ThemeMode = 'system';
+  private router = inject(Router)
 
   ngOnInit(): void {
     this.store.dispatch(loadTheme());
@@ -31,5 +34,9 @@ export class ColorThemeComponent implements OnInit {
 
   updateTheme(): void {
     this.store.dispatch(setTheme({ theme: this.selectedTheme }));
+  }
+
+  goToSettings():void {
+    this.router.navigate(['settings'])
   }
 }

@@ -8,13 +8,14 @@ import * as NoteSelectors from '../../../store/selectors/selectors';
 import { NoteItemComponent } from "../note-item/note-item.component";
 import { AsyncPipe } from '@angular/common';
 import { Nav } from "../../shared/nav/nav";
+import { HeaderComponent } from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-selected-tags-details',
   standalone:true,
   templateUrl: './selected-tags-details.component.html',
   styleUrls: ['./selected-tags-details.component.scss'],
-  imports: [NoteItemComponent, AsyncPipe, Nav]
+  imports: [NoteItemComponent, AsyncPipe, Nav, HeaderComponent]
 })
 export class SelectedTagsDetailsComponent implements OnInit {
  

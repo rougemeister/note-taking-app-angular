@@ -9,11 +9,12 @@ import { AsyncPipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import *  as NoteActions from 'src/app/store/actions/actions'
+import { HeaderComponent } from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-note-details',
   standalone: true,
-  imports: [Nav, AsyncPipe,CommonModule],
+  imports: [Nav, AsyncPipe, CommonModule, HeaderComponent],
   templateUrl: './note-details.html',
   styleUrl: './note-details.scss'
 })
